@@ -1,14 +1,14 @@
 cask "mouthpiece" do
   on_arm do
-    version "1.2.0"
-    sha256 "f402e9b8e6b143503b7b4bde79bf772129006cc3b53a33ec1cce583813eb9963"
+    version "1.3.0"
+    sha256 "eba4937f21af3de271186c51fa4c3568d6a54d0d8a215dc8a08ceeda4c404b10"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-arm64.dmg"
   end
 
   on_intel do
-    version "1.2.0"
-    sha256 "ef495323399e8f901608e92553e03410522b33b7832f361ff11eb2f46d60eb75"
+    version "1.3.0"
+    sha256 "857b1fce2576e89e57cfa7ddc043b71c16b6d517d47f81dc687f2c9704f5b340"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}.dmg"
   end
@@ -23,6 +23,15 @@ cask "mouthpiece" do
   end
 
   app "Mouthpiece.app"
+
+  # Mouthpiece is signed with a self-signed code-signing cert (no Apple Developer ID)
+  # so Gatekeeper marks downloads as quarantined. Stripping the quarantine attribute
+  # post-install lets users open the app on first launch without the right-click dance.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Mouthpiece.app"],
+                   sudo: false
+  end
 
   zap trash: [
     "~/Library/Application Support/Mouthpiece",
