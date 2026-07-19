@@ -1,21 +1,23 @@
 cask "mouthpiece" do
   on_arm do
-    version "1.4.8"
-    sha256 "f45fb7a8fb8db243826f9d094efe4a03be42faa055b37b1fa758e90a1532d7a8"
+    version "2.0.0"
+    sha256 "0d64ad894fcf1aa4927e65f33fbb7814bd718fb8a47cfa03aa5870dff2d38487"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-arm64.dmg"
   end
 
   on_intel do
-    version "1.4.8"
-    sha256 "cf50e36e9fa4320adb58a1ccf21c300df159d525cfa752cfce96c6c3a0d98696"
+    version "2.0.0"
+    sha256 "bf686b5c2761f1f22eb5f54f966461776db135e5aba78dec90dc28986d92aa61"
 
-    url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}.dmg"
+    url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-x64.dmg"
   end
 
   name "Mouthpiece"
-  desc "Desktop dictation app using whisper.cpp"
+  desc "Native speech-to-text dictation app"
   homepage "https://github.com/NotWizard/Mouthpiece"
+
+  depends_on macos: ">= :sequoia"
 
   livecheck do
     url :url
@@ -24,9 +26,6 @@ cask "mouthpiece" do
 
   app "Mouthpiece.app"
 
-  # Mouthpiece is signed with a self-signed code-signing cert (no Apple Developer ID)
-  # so Gatekeeper marks downloads as quarantined. Stripping the quarantine attribute
-  # post-install lets users open the app on first launch without the right-click dance.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Mouthpiece.app"],
@@ -34,9 +33,8 @@ cask "mouthpiece" do
   end
 
   zap trash: [
+    "~/.cache/mouthpiece",
     "~/Library/Application Support/Mouthpiece",
-    "~/Library/Caches/com.mouthpiece.app",
-    "~/Library/Logs/Mouthpiece",
     "~/Library/Preferences/com.mouthpiece.app.plist",
   ]
 end
