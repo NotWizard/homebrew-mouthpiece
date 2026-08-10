@@ -1,14 +1,14 @@
 cask "mouthpiece" do
   on_arm do
-    version "2.0.7"
-    sha256 "ea32c3f0e95a56b47222f633fca93292251732ebda46b40f41ba174caf5cf22a"
+    version "2.0.8"
+    sha256 "1d207311fb376ae826a3232c743d638a87096514a4de10ba485b8b26bbbd1cac"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-arm64.dmg"
   end
 
   on_intel do
-    version "2.0.7"
-    sha256 "4a9b96e670e633a2bd1366112e941f14dee94420734da3f4ababe91b8dfc4df8"
+    version "2.0.8"
+    sha256 "0230e394046d7555f980f476a87a31574715ddd06b3d13bce1290f74173aaf0b"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-x64.dmg"
   end
@@ -17,6 +17,7 @@ cask "mouthpiece" do
   desc "Native speech-to-text dictation app"
   homepage "https://github.com/NotWizard/Mouthpiece"
 
+  auto_updates true
   depends_on macos: :sequoia
 
   livecheck do
