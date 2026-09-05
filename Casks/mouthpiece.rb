@@ -33,6 +33,13 @@ cask "mouthpiece" do
                    sudo: false
   end
 
+  # `brew upgrade --cask` replaces the .app on disk but cannot swap the
+  # already-loaded process — without this stanza users still see the old
+  # version until they manually quit and relaunch. `quit:` sends a macOS quit
+  # signal to the running app before the upgrade replaces its bundle, so the
+  # next launch picks up the new version cleanly.
+  uninstall quit: "com.mouthpiece.app"
+
   zap trash: [
     "~/.cache/mouthpiece",
     "~/Library/Application Support/Mouthpiece",
