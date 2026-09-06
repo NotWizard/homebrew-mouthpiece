@@ -1,14 +1,14 @@
 cask "mouthpiece" do
   on_arm do
-    version "2.1.4"
-    sha256 "a31bf8d221374a095bb9ffda84428dc70e117536a9467107f48679fda3051551"
+    version "2.1.5"
+    sha256 "487145c9ab5f5b20f4ffd5f2b717269b6e934229afdc4039ab45f74f273dbfac"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-arm64.dmg"
   end
 
   on_intel do
-    version "2.1.4"
-    sha256 "458056b0021a81e180eb21208b3a0d12be03187051c4c8b8f299d47f50ee4dbe"
+    version "2.1.5"
+    sha256 "4e05d82f7be063fabdc5c74d06fd4231dd969c9f42157e8a980cc2bdab137a40"
 
     url "https://github.com/NotWizard/Mouthpiece/releases/download/v#{version}/Mouthpiece-#{version}-x64.dmg"
   end
